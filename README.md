@@ -39,7 +39,9 @@ A full-stack **Betting Site** project built with:
 ## 🎥 Demo Video  
 
 👉 [Watch the demo video here](https://youtu.be/8jjr0mpA05g)  
+## 🖼️ Screenshots  
 
+![Homepage Screenshot](https://raw.githubusercontent.com/PraveenRusiru/BettingSite/refs/heads/main/Images/Screenshot%202025-09-21%20at%2023.39.05.png)
 ---
 
 ## ⚙️ How to Run
