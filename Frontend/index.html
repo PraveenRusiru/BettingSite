@@ -1,0 +1,2367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CricketBet - Live Cricket Betting</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/basicstyles.css">
+    <!-- <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #f72585;
+            --accent: #4cc9f0;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --success: #06d6a0;
+            --danger: #ef476f;
+            --warning: #ffd166;
+            --info: #118ab2;
+            --bg-gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            --card-gradient: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            --text-gradient: linear-gradient(135deg, #4361ee 0%, #f72585 100%);
+            --neon-shadow: 0 0 10px rgba(67, 97, 238, 0.5), 0 0 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3a56d4;
+        }
+        
+        header {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            background: var(--text-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(67, 97, 238, 0.5);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(67, 97, 238, 0.8), 0 0 20px rgba(247, 37, 133, 0.6);
+            }
+        }
+        
+        .logo img {
+            height: 45px;
+            margin-right: 12px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+        }
+        
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .auth-buttons button {
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-btn {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+        
+        .login-btn:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .signup-btn {
+            background-color: var(--secondary);
+            border: 2px solid var(--secondary);
+            color: white;
+        }
+        
+        .signup-btn:hover {
+            background-color: #e51279;
+            border-color: #e51279;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(247, 37, 133, 0.3);
+        }
+        
+        .main-container {
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--text-gradient);
+            border-radius: 2px;
+        }
+        
+        .section-title svg {
+            margin-right: 12px;
+            color: var(--primary);
+        }
+        
+        .matches-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .match-card {
+            background: var(--card-gradient);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .match-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: var(--text-gradient);
+            opacity: 0.8;
+        }
+        
+        .match-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .match-header {
+            background: var(--bg-gradient);
+            color: white;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .match-tournament {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+        
+        .match-time {
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 50px;
+        }
+        
+        .live-pulse {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: var(--success);
+            border-radius: 50%;
+            margin-right: 5px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(6, 214, 160, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(6, 214, 160, 0);
+            }
+            100% {
+                transform: scale(0.9);
+                box-shadow: 0 0 0 0 rgba(6, 214, 160, 0);
+            }
+        }
+        
+        .match-teams {
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .team {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .team-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .team-logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+        }
+        
+        .team:hover .team-logo {
+            transform: scale(1.1);
+        }
+        
+        .team-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .bet-options {
+            padding: 0 1.8rem 1.8rem;
+        }
+        
+        .bet-option {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .bet-option:hover {
+            background-color: #f1f5f9;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .bet-title {
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-size: 1rem;
+        }
+        
+        .bet-outcomes {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .outcome {
+            flex: 1;
+            text-align: center;
+            padding: 0.8rem;
+            background-color: white;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .outcome:hover {
+            border-color: var(--secondary);
+            background-color: #fff5f9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(247, 37, 133, 0.1);
+        }
+        
+        .outcome.selected {
+            border-color: var(--secondary);
+            background-color: #fff5f9;
+            box-shadow: 0 0 0 2px rgba(247, 37, 133, 0.3);
+        }
+        
+        .outcome-name {
+            font-size: 0.9rem;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+        
+        .outcome-odds {
+            font-weight: 700;
+            color: var(--success);
+            font-size: 1.1rem;
+        }
+        
+        .bet-amount-input {
+            padding: 1.8rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .input-group input {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .potential-win {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--success);
+            border: 1px solid #bbf7d0;
+            font-size: 1.1rem;
+        }
+        
+        .place-bet-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(6, 214, 160, 0.3);
+        }
+        
+        .place-bet-btn:hover {
+            background: #05c28f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(6, 214, 160, 0.4);
+        }
+        
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: translateY(-30px) scale(0.9);
+            transition: transform 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+        
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+        
+        .modal-header {
+            padding: 1.8rem;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--bg-gradient);
+            color: white;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(67, 97, 238, 0.3);
+        }
+        
+        .submit-btn:hover {
+            background: #3a56d4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(67, 97, 238, 0.4);
+        }
+        
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .auth-switch a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .auth-switch a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+        
+        /* Google Login */
+        .google-login {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        
+        .google-login p {
+            font-size: 0.95rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .google-login p::before,
+        .google-login p::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30%;
+            height: 1px;
+            background: #e2e8f0;
+        }
+        
+        .google-login p::before {
+            left: 0;
+        }
+        
+        .google-login p::after {
+            right: 0;
+        }
+        
+        .googleLogo {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid #dadce0;
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: #3c4043;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .google-btn:hover {
+            background-color: #f7f8f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .google-btn:active {
+            background-color: #eef0f1;
+            transform: scale(0.98);
+        }
+        
+        /* Match Detail Modal */
+        .match-detail-modal .modal-content {
+            max-width: 850px;
+        }
+        
+        .match-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .match-score {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .score-team {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        
+        .score-team .team-logo {
+            width: 60px;
+            height: 60px;
+        }
+        
+        .score-details {
+            text-align: center;
+        }
+        
+        .score-runs {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .score-overs {
+            font-size: 1rem;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .match-status {
+            background: var(--info);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 2px 4px rgba(17, 138, 178, 0.3);
+        }
+        
+        .bet-tabs {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1.8rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        
+        .bet-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .bet-tab {
+            padding: 1rem 1.8rem;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .bet-tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Profile Modal */
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin: 0 auto 1.5rem;
+            display: block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .profile-email {
+            color: #64748b;
+            font-size: 1rem;
+        }
+        
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(6, 214, 160, 0.1);
+            color: var(--success);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        
+        /* 2FA Modal */
+        .verification-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .verification-option {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .verification-option:hover {
+            border-color: var(--primary);
+            background: #f8fafc;
+        }
+        
+        .verification-option input {
+            margin-right: 1rem;
+        }
+        
+        .verification-option label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .verification-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+        
+        .verification-code {
+            display: flex;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .verification-code input {
+            flex: 1;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5rem;
+            padding: 1rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .matches-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+            
+            .bet-tabs {
+                overflow-x: auto;
+            }
+            
+            .bet-tab {
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .match-score {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .score-team {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .score-details {
+                order: -1;
+            }
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            animation: fadeIn 0.6s ease;
+        }
+        
+        .slide-in-left {
+            animation: slideInLeft 0.6s ease;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .slide-in-right {
+            animation: slideInRight 0.6s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .bounce {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        /* Notification badge */
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--secondary);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            animation: pulse 1.5s infinite;
+        }
+    </style> -->
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <!-- <img src="https://via.placeholder.com/40x40" alt="CricketBet Logo"> -->
+            <span>CricketBet</span>
+        </div>
+        <div class="auth-buttons">
+              <div class="user-info" id="userInfo" style="display: none;">
+        <!-- <img src="https://via.placeholder.com/40x40" class="user-avatar" alt="User Avatar" id="userAvatar"> -->
+    <button class="add-btn" id="openModalBtn">
+                <i class="fas fa-plus-circle"></i>
+            </button>
+        <span id="balance">balance : 100$</span>
+    </div>
+        <button class="login-btn" id="loginBtn">Login</button>
+        <button class="signup-btn" id="signupBtn">Sign Up</button>
+        <button class="profile-btn" id="profileBtn" style="display: none;">
+        <i class="fas fa-user-circle"></i> Profile
+        </button>
+        <button class="logout-btn" id="logoutBtn" style="display: none;">
+        <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <h1 class="section-title">
+            <i class="fas fa-broadcast-tower"></i>
+            Live Matches
+        </h1>
+        
+        <div class="matches-container" id="liveMatches">
+            <!-- Live matches will be inserted here by JavaScript -->
+        </div>
+        
+        <h1 class="section-title" style="margin-top: 3rem;">
+            <i class="fas fa-clock"></i>
+            Upcoming Matches
+        </h1>
+        
+        <div class="matches-container" id="upcomingMatches">
+            <!-- Upcoming matches will be inserted here by JavaScript -->
+        </div>
+    </div>
+    
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Login to Your Account</h2>
+                <button class="close-btn" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginUsername">Username</label>
+                        <input type="text" id="loginUsername" required>
+                        <span id="loginUsernameFeedback" class="feedback"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                        <span id="loginPasswordfeedback" class="feedback"></span>
+                    </div>
+                    <button type="submit" class="submit-btn" id="loginBtnLoginModel">Login</button>
+                </form>
+                
+                <div class="google-login">
+                    <p>Or continue with</p>
+                    <button id="googleLoginBtn" class="google-btn">
+                        <img class="googleLogo" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"> 
+                        Login with Google
+                    </button>
+                </div>
+                
+                <div class="auth-switch">
+                    Don't have an account? <a href="#" id="switchToSignup">Sign up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Signup Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create New Account</h2>
+                <button class="close-btn" id="closeSignupModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label for="signupUsername">Username</label>
+                        <input type="text" id="signupUsername" name="username" required>
+                        <span id="usernameFeedback" class="feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupEmail">Email</label>
+                        <input type="email" id="signupEmail" name="email" required>
+                        <span id="emailFeedback" class="feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupNIC">NIC</label>
+                        <input type="text" id="signupNIC" name="nic" required>
+                        <span id="nicFeedback" class="feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="signupPassword">Password</label>
+                        <input type="password" id="signupPassword" name="password" required>
+                        <span id="passwordFeedback" class="feedback"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="password" required>
+                        <span id="confirmPasswordFeedback" class="feedback"></span>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="createAccountBtn">Create Account</button>
+                </form>
+
+                <div class="google-login">
+                    <p>Or continue with</p>
+                    <button id="googleSignupBtn" class="google-btn">
+                        <img class="googleLogo" src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"> 
+                        Sign up with Google
+                    </button>
+                </div>
+
+                <div class="auth-switch">
+                    Already have an account? <a href="#" id="switchToLogin">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 2FA Verification Modal -->
+    <div class="modal" id="twoFAModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Two-Factor Authentication</h2>
+                <button class="close-btn" id="closeTwoFAModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please verify your identity using one of the following methods:</p>
+                
+                <div class="verification-options">
+                    <div class="verification-option">
+                        <input type="radio" id="email-verification" name="verification-method" value="email" checked>
+                        <label for="email-verification">
+                            <i class="fas fa-envelope verification-icon"></i>
+                            Email verification code
+                        </label>
+                    </div>
+                    
+                    <div class="verification-option">
+                        <input type="radio" id="authenticator-app" name="verification-method" value="authenticator">
+                        <label for="authenticator-app">
+                            <i class="fas fa-mobile-alt verification-icon"></i>
+                            Authenticator app
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="verificationCode">Enter verification code</label>
+                    <input type="text" id="verificationCode" placeholder="Enter 6-digit code" required>
+                </div>
+                
+                <button type="button" class="submit-btn" id="verify2FABtn">Verify & Continue</button>
+                
+                <div class="auth-switch">
+                    Didn't receive the code? <a href="#" id="resendCode">Resend code</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+     <!-- Deposit Money Modal -->
+     <!-- Deposit Money Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Deposit Funds</h2>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="input-group">
+                    <label for="amount">Amount to Deposit</label>
+                    <div class="amount-input">
+                        <span>$</span>
+                        <input type="text" id="amount" placeholder="0.00" inputmode="decimal">
+                    </div>
+                </div>
+                
+                <div class="payment-options">
+                    <div class="payment-option" data-method="card">
+                        <i class="fas fa-credit-card"></i>
+                        <div>Card</div>
+                    </div>
+                    <!-- <div class="payment-option" data-method="paypal">
+                        <i class="fab fa-paypal"></i>
+                        <div>PayPal</div>
+                    </div>
+                    <div class="payment-option" data-method="bank">
+                        <i class="fas fa-university"></i>
+                        <div>Bank</div>
+                    </div> -->
+                </div>
+                
+                <button type="submit" class="pay-button" id="payhere-payment">
+                    <i class="fas fa-lock"></i>
+                    Pay Now
+                </button>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Payment Successful!</h3>
+                    <p>Your deposit of <span id="depositAmount">$0.00</span> has been processed.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Profile Modal -->
+    <!-- Profile Modal -->
+<div class="modal" id="profileModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Your Profile</h2>
+            <button class="close-btn" id="closeProfileModal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <!-- <img src="https://via.placeholder.com/100" class="profile-pic" alt="Profile Picture"> -->
+            
+            <div class="profile-info">
+                <h3 class="profile-name" id="profileUserName">Username</h3>
+                <h4 id="profileId"></h4>
+                <p class="profile-email" id="profileUserEmail">user@example.com</p>
+                <div class="verification-badge">
+                    <i class="fas fa-shield-check"></i>
+                    <span id="2faBadge">2FA Enabled</span>
+                </div>
+            </div>
+            
+            <form id="profileForm">
+                <div class="form-group">
+                    <label for="profileUsername">Username</label>
+                    <div class="inputField">
+                        <input type="text" id="profilename" placeholder="CricketFan23" class="profileInput" disabled >
+                        <button type="button" class="settings-icon" id="usernameSettingsButton" title="Change text value"><i class="fas fa-cog"></i></button>
+                    </div>
+                    <span id="usernameupdateFeedback" class="feedback"></span>
+                      
+            
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileEmail">Email</label>
+                    <div class="inputField">
+                                <input type="email" id="profileEmail" placeholder="user@example.com" class="profileInput" disabled>
+                    <button type="button" class="settings-icon" id="emailSettingsButton" title="Change text value" >
+                <i class="fas fa-cog"></i>
+            </button>
+                    </div>
+                        <span id="emailupdateFeedback" class="feedback"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileNic">NIC Number</label>
+                    <div class="inputField">
+                                <input type="tel" id="profileNic" placeholder="+1 234 567 8900" class="profileInput" disabled>
+                    <button type="button" class="settings-icon" id="nicSettingsButton" title="Change text value" >
+                <i class="fas fa-cog"></i>
+            </button>
+                    </div>
+                    <span id="nicupdateFeedback" class="feedback"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="currentPassword">Current Password</label>
+                     <div class="inputField">
+                            <input type="password" id="currentPassword" class="profileInput" disabled>
+                        <button type="button" class="settings-icon" id="passwordSettingsButton" title="Change text value">
+                        <i class="fas fa-cog"></i>
+                     </div>
+                <span id="checkPasswordFeedback" class="feedback"></span>
+            </button>
+                </div>
+                
+                <div class="form-group passwordUpdate" hidden>
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword">
+                     <span id="checkNewPasswordFeedback" class="feedback"></span>
+                </div>
+                
+                <div class="form-group passwordUpdate" hidden>
+                    <label for="confirmNewPassword">Confirm New Password</label>
+                    <input type="password" id="confirmNewPassword">
+                    <span id="checkNewConfirmPasswordFeedback" class="feedback"></span>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="updateProfileBtn">Update Profile</button>
+            </form>
+            
+            <div class="auth-switch" style="margin-top: 1.5rem;">
+                <a href="#" id="manage2FABtn">Manage Two-Factor Authentication</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <!-- Match Detail Modal -->
+    <div class="modal match-detail-modal" id="matchDetailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="matchModalTitle">Match Details</h2>
+                <button class="close-btn" id="closeMatchModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="match-info">
+                    <div class="match-score">
+                        <div class="score-team">
+                            <!-- <img src="https://via.placeholder.com/50x50" alt="Team A" class="team-logo"> -->
+                            <div>
+                                <div class="batting-team-name">India</div>
+                                <div class="match-status">Live</div>
+                            </div>
+                        </div>
+                        <div class="score-details">
+                            <div class="batting-score-runs score-runs"></div>
+                            <div class="batting-score-overs"></div>
+                        </div>
+                        <div class="score-details">
+                            <div class="bowling-score-runs score-runs"></div>
+                            <div class="bowling-score-overs"></div>
+                        </div>
+                        <div class="score-team">
+                            <!-- <img src="https://via.placeholder.com/50x50" alt="Team B" class="team-logo"> -->
+                            <div>
+                                <div class="bowling-team-name"></div>
+                                <div class="match-status">Live</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bet-tabs">
+                        <div class="bet-tab active" data-tab="match-winner">Match Winner</div>
+                        <!-- <div class="bet-tab" data-tab="top-scorer">Top Scorer</div> -->
+                        <div class="bet-tab" data-tab="runs-forecast">Runs Forecast</div>
+                        <div class="bet-tab" data-tab="special">Special Bets</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="match-winner">
+                        <div class="bet-option">
+                            <div class="bet-title">Match Winner</div>
+                            <div class="bet-outcomes">
+                                <div class="outcome">
+                                    <div class="outcome-name outcome-batting-name"></div>
+                                    <div class="outcome-odds outcome-winning-odds">1.45</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name outcome-bowling-name"></div>
+                                    <div class="outcome-odds outcome-winning-odds">1.67</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">Draw</div>
+                                    <div class="outcome-odds outcome-winning-odds">4.5</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bet-amount-input">
+                            <div class="input-group">
+                                <label for="betAmount">Enter Bet Amount ($)</label>
+                                <input type="number" id="betAmount" min="10" value="10">
+                            </div>
+                            <div class="potential-win">
+                                Potential Win: $<span id="potentialWin">18.50</span>
+                            </div>
+                            <button class="place-bet-btn" id="place-winner-bet-btn">Place Bet</button>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="tab-content" id="top-scorer">
+                        <div class="bet-option">
+                            <div class="bet-title">Top Team Scorer - India</div>
+                            <div class="bet-outcomes">
+                                <div class="outcome">
+                                    <div class="outcome-name">R. Sharma</div>
+                                    <div class="outcome-odds">3.50</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">V. Kohli</div>
+                                    <div class="outcome-odds">3.00</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">S. Iyer</div>
+                                    <div class="outcome-odds">4.50</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bet-option">
+                            <div class="bet-title">Top Team Scorer - Australia</div>
+                            <div class="bet-outcomes">
+                                <div class="outcome">
+                                    <div class="outcome-name">D. Warner</div>
+                                    <div class="outcome-odds">2.80</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">S. Smith</div>
+                                    <div class="outcome-odds">3.20</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">M. Labuschagne</div>
+                                    <div class="outcome-odds">3.50</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bet-amount-input">
+                            <div class="input-group">
+                                <label for="betAmountTopScorer">Enter Bet Amount ($)</label>
+                                <input type="number" id="betAmountTopScorer" min="10" value="10">
+                            </div>
+                            <div class="potential-win">
+                                Potential Win: $<span id="potentialWinTopScorer">35.00</span>
+                            </div>
+                            <button class="place-bet-btn">Place Bet</button>
+                        </div>
+                    </div> -->
+                    
+                    <div class="tab-content" id="runs-forecast">
+                        <div class="bet-option">
+                            <div class="bet-title">Total Runs in Match</div>
+                            <div class="bet-outcomes">
+                                <div class="outcome">
+                                    <div class="outcome-name">Under 300</div>
+                                    <div class="outcome-runs-odds">2.20</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">300-349</div>
+                                    <div class="outcome-runs-odds">2.50</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">350-399</div>
+                                    <div class="outcome-runs-odds">3.00</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">400+</div>
+                                    <div class="outcome-runs-odds">4.50</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bet-amount-input">
+                            <div class="input-group">
+                                <label for="betAmountRuns">Enter Bet Amount ($)</label>
+                                <input type="number" id="betAmountRuns" min="10" value="10">
+                            </div>
+                            <div class="potential-win">
+                                Potential Win: $<span id="potentialWinRuns">22.00</span>
+                            </div>
+                            <button class="place-bet-btn" id="place-runs-bet-btn"> Place Bet</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="special">
+                        <div class="bet-option">
+                            <div class="bet-title">Method of First Dismissal</div>
+                            <div class="bet-outcomes">
+                                <div class="outcome">
+                                    <div class="outcome-name">Caught</div>
+                                    <div class="outcome-odds">1.50</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">Bowled</div>
+                                    <div class="outcome-odds">2.50</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">LBW</div>
+                                    <div class="outcome-odds">3.50</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">Run Out</div>
+                                    <div class="outcome-odds">4.00</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bet-option">
+                            <div class="bet-title">Will There Be a Century?</div>
+                            <div class="bet-outcomes">
+                                <div class="outcome">
+                                    <div class="outcome-name">Yes</div>
+                                    <div class="outcome-odds">2.10</div>
+                                </div>
+                                <div class="outcome">
+                                    <div class="outcome-name">No</div>
+                                    <div class="outcome-odds">1.70</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bet-amount-input">
+                            <div class="input-group">
+                                <label for="betAmountSpecial">Enter Bet Amount ($)</label>
+                                <input type="number" class="betAmountSpecial" min="10" value="10">
+                            </div>
+                            <div class="potential-win">
+                                Potential Win: $<span class="potentialWinSpecial">15.00</span>
+                            </div>
+                            <button class="place-bet-btn" id="place-special-bet-btn">Place Bet</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery (latest version from CDN) -->
+     
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="https://www.payhere.lk/lib/payhere.js"></script>
+
+
+    </script>
+    <script src="/js/validate.js"></script>
+    <script src="/js/loadData.js"></script>
+    <script src="/js/placeBets.js"></script>
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script>
+        // Sample match data
+
+      $(document).ready(function () {
+        liveMatches();
+        setInterval(() => {
+            liveMatchesContainer.empty();
+        // upcomingMatchesContainer.empty();
+            liveMatches();
+            console.log("updated time",new Date().toLocaleTimeString());
+        }, 30000); // Refresh every 30 seconds (60000 milliseconds)
+        upcomingMatches();
+    
+          const $modalOverlay = $('#modalOverlay');
+            const $openModalBtn = $('#openModalBtn');
+            const $closeModalBtn = $('#closeModalBtn');
+            const $amountInput = $('#amount');
+            const $paymentOptions = $('.payment-option');
+            const $payButton = $('#payhere-payment');
+            const $successMessage = $('#successMessage');
+            const $depositAmount = $('#depositAmount');
+            
+            // Open modal
+            $openModalBtn.on('click', function() {
+                $modalOverlay.addClass('active');
+                $('body').css('overflow', 'hidden'); // Prevent scrolling
+            });
+            
+            // Close modal
+            $closeModalBtn.on('click', function() {
+                $modalOverlay.removeClass('active');
+                $('body').css('overflow', 'auto'); // Enable scrolling
+            });
+            
+            // Close modal when clicking outside
+            $modalOverlay.on('click', function(e) {
+                if (e.target === this) {
+                    $modalOverlay.removeClass('active');
+                    $('body').css('overflow', 'auto');
+                }
+            });
+            
+            // Format currency input
+            $amountInput.on('input', function() {
+                // Format the input value as currency
+                let value = $(this).val().replace(/[^\d.]/g, '');
+                
+                // Ensure only two decimal places
+                if (value.includes('.')) {
+                    const parts = value.split('.');
+                    if (parts[1].length > 2) {
+                        parts[1] = parts[1].substring(0, 2);
+                        value = parts.join('.');
+                    }
+                }
+                
+                $(this).val(value);
+            });
+            
+            // Select payment method
+            $paymentOptions.on('click', function(e) {
+                e.preventDefault();
+                // Remove selected class from all options
+                $paymentOptions.removeClass('selected');
+                
+                // Add selected class to clicked option
+                $(this).addClass('selected');
+            });
+            
+                 payhere.onCompleted = function onCompleted(orderId) { 
+                    
+                    fetch(`http://localhost:8080/payment/processPayment`, {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+            paymentId: orderId,
+            username:localStorage.getItem("username"),
+            paymentType:"DEPOSIT",
+            date:new Date().toISOString(),
+            amount:$amountInput.val()
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+            if(data.data!=null){
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Payment Successful',
+                    text: `Your deposit of $${$amountInput.val()} has been processed.`,
+                    confirmButtonText: 'OK'
+                });
+                
+                $modalOverlay.removeClass('active');
+                // Update balance display
+                let currentBalance = parseFloat($('#balance').text().replace('balance : $', ''));
+                localStorage.setItem("balance", data.data.balance);
+                let newBalance = currentBalance + parseFloat($amountInput.val());
+                balance.text('balance : $' + data.data.balance);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Payment Failed',
+                    text: 'There was an issue processing your payment. Please try again.',
+                    confirmButtonText: 'OK'
+                });
+            }
+        })
+        .catch((error) => {
+         
+        });
+
+        console.log("Payment completed. OrderID:" + orderId);
+        // Note: validate the payment and show success or failure page to the customer
+    };
+
+
+    // Payment window closed
+    payhere.onDismissed = function onDismissed() {
+        // Note: Prompt user to pay again or show an error page
+        console.log("Payment dismissed");
+    };
+
+    // Error occurred
+    payhere.onError = function onError(error) {
+        // Note: show an error page
+        console.log("error occured !")
+        console.log("Error:"  + error);
+    };
+
+
+            // Process payment
+            $payButton. on('click',async function() {
+
+                const amount = $amountInput.val();
+
+                const selectedMethod = $('.payment-option.selected').data('method');
+                $payButton.html(
+       '<i class="fas fa-spinner fa-spin"></i> Processing...'
+     );
+                // Check if amount is valid
+                if (!amount || parseFloat(amount) <= 0) {
+                    alert('Please enter a valid amount');
+                    return;
+                }
+                
+                // Check if a payment method is selected
+                if (!selectedMethod) {
+                    alert('Please select a payment method');
+                    return;
+                }
+
+                var paymentData="";
+                var orderId="";
+                var hashCode="";
+                var useremail="";
+                var usersname="";
+              
+                           let token = getStoredToken();
+                 console.log("access token ", token);
+                 if (token === null) {
+             console.error("Access token is null. User might not be authenticated.");
+                         return;
+              }
+                      try {
+                const response = await fetch(`http://localhost:8080/payment/generateCode`, {
+                    headers: {
+                    Authorization: "Bearer " + token,
+                    "Content-Type": "application/json",
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                    username: localStorage.getItem("username"),
+                    amount: amount,
+                    }),
+                });
+
+                const data = await response.json();
+
+                paymentData = data.data;
+                orderId = paymentData.paymentId;
+                hashCode = paymentData.hash;
+                useremail = paymentData.email;
+                usersname = paymentData.username;
+
+                console.log(
+                    "paymentId", orderId,
+                    "username", localStorage.getItem("username"),
+                    "hash", hashCode,
+                    "email", useremail,
+                    "amount", amount
+                );
+
+
+                } catch (error) {
+                console.error("error", error);
+                //   return null;
+                }
+
+            if(paymentData!=null||paymentData!=undefined || paymentData!=""){
+                    // Payment completed. It can be a successful failure.
+
+            console.log("paymentData isnot null or undefined or  orderId :",orderId);
+    // Put the payment variables here
+        var payment = {
+        "sandbox": true,
+        "merchant_id": "1232072",    // Replace your Merchant ID
+        "return_url": "http://localhost:63658",     // Important
+        "cancel_url": "http://localhost:63658",     // Important
+        "notify_url": "http://sample.com/notify",
+        "order_id": orderId, // *Replace with your order id
+        "items": "Door bell wireles",
+        "amount": amount,
+        "currency": "LKR",
+        "hash": hashCode, // *Replace with generated hash retrieved from backend
+        "first_name": usersname,
+        "last_name": " sds",
+        "email": useremail,
+        "phone": "07734443410",
+        "address": "No.1, Galle Road",
+        "city": "Colombo",
+        "country": "Sri Lanka",
+        "delivery_address": "No. 46, Galle road, Kalutara South",
+        "delivery_city": "Kalutara",
+        "delivery_country": "Sri Lanka",
+        "custom_1": "",
+        "custom_2": ""
+    };
+
+    // Show the payhere.js popup, when "PayHere Pay" is clicked
+    // document.getElementById('payButton').onclick = function (e) {
+        payhere.startPayment(payment);
+    // }; 
+
+            }
+                // Show processing animation
+                // $payButton.html('<i class="fas fa-spinner fa-spin"></i> Processing...');
+                // $payButton.prop('disabled', true);
+                
+
+
+                // // Simulate payment processing
+                // setTimeout(function() {
+                //     // Show success message
+                //     $depositAmount.text('$' + parseFloat(amount).toFixed(2));
+                //     $successMessage.show();
+                    
+                //     // Reset button
+                //     $payButton.html('<i class="fas fa-lock"></i> Pay Now');
+                //     $payButton.prop('disabled', false);
+                    
+                //     // Clear input after successful payment
+                //     $amountInput.val('');
+                    
+                //     // Reset payment selection
+                //     $paymentOptions.removeClass('selected');
+                    
+                //     // Close modal after 3 seconds
+                //     setTimeout(function() {
+                //         $modalOverlay.removeClass('active');
+                //         $('body').css('overflow', 'auto');
+                        
+                //         // Hide success message for next time
+                //         $successMessage.hide();
+                //     }, 3000);
+                // }, 2000);
+            });
+    
+
+        async function liveMatches(){
+            const liveMatches = await loadMatchdata();
+            // console.log("Live matches ",liveMatches.data)    
+            liveMatches.data.forEach(match => {
+                console.log("Match ",match)
+                // if(){}
+                if(match.battingTeam!=null && match.bowlingTeam!=null){
+                    const matchCard = createMatchCard(match);
+                liveMatchesContainer.append(matchCard);
+                }
+                
+        });
+            // return liveMatches;
+        }
+                        function createMatchCard(match){
+                            console.log("Creating card for match: ", match.id);
+        const card = $('<div>', { class: 'match-card fade-in' }).html(`
+            <div class="match-header">
+                <div class="match-tournament">${match.tournament}</div>
+                <div class="match-time">
+                    ${match.time === 'Live' ? '<span class="live-pulse"></span>' : '<i class="fas fa-clock"></i>'}
+                    ${match.time}
+                </div>
+            </div>
+            <div class="match-teams">
+                <div class="team">
+                    <div class="team-info">
+                        
+                        <div class="team-name">${match.battingTeam!=null ?match.battingTeam:""}</div>
+                    </div>
+                    <div class="team-score">${match.battingScore!=null?match.battingScore:""}</div>
+                </div>
+                <div class="team">
+                    <div class="team-info">
+                        <div class="team-name">${match.bowlingTeam!=null?match.bowlingTeam:"" }</div>
+                    </div>
+                    <div class="team-score">${match.bowlingScore!=null?match.bowlingScore:""}</div>
+                </div>
+                <div class="match-status">${match.status}</div>
+            </div>
+            <div class="bet-options">
+                <div class="bet-option">
+                    <div class="bet-title">Match Winner</div>
+                    <div class="bet-outcomes">
+                        <div class="outcome">
+                            <div class="outcome-name">${match.battingTeam}</div>
+                            <div class="outcome-odds">1.85</div>
+                        </div>
+                        <div class="outcome">
+                            <div class="outcome-name">${match.bowlingTeam}</div>
+                            <div class="outcome-odds">2.10</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bet-amount-input">
+                <div class="input-group">
+                    <label for="betAmount-${match.id}">Enter Bet Amount ($)</label>
+                    <input type="number" id="betAmount-${match.id}" min="10" value="10">
+                </div>
+                <div class="potential-win">
+                    Potential Win: $<span id="potentialWin-${match.id}"></span>
+                </div>
+                <button class="place-bet-btn">Place Bet</button>
+            </div>
+        `);
+
+        // Click event to open match detail modal
+        $(card).on('click', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+
+            $('#matchModalTitle').text(`${match.battingTeam} vs ${match.bowlingTeam} - ${match.tournament}`);
+            $(".batting-team-name").text(match.battingTeam);
+            $(".bowling-team-name").text(match.bowlingTeam);
+            $(".match-time").text(match.time);
+            $(".batting-score-runs").text(match.battingScore!=null?match.battingScore:"");
+            $(".bowling-score-runs").text(match.bowlingScore!=null?match.bowlingScore:"");
+            $(".outcome-batting-name").text(match.battingTeam);
+            $(".outcome-bowling-name").text(match.bowlingTeam);
+            $(".outcome-batting-odds").text(1.85);
+            $(".outcome-bowling-odds").text(2.10);
+            $(".outcome-draw-odds").text(4.50);
+            $(matchDetailModal).addClass('active');
+            // const betAmountInput = $(matchDetailModal).find('.betAmountSpecial');
+            const potentialWinSpecial = $(matchDetailModal).find('.potentialWinSpecial');
+            // const $betAmountLabel = $matchDetailModal.find('.input-group label');
+    
+            // Update IDs and attributes
+                // betAmountInput.attr('id', `betAmount-${match.id}`);
+                potentialWinSpecial.attr('id', `potentialWinSpecial-${match.id}`);
+               
+
+        });
+
+        // Potential win calculation
+        const betAmount = $(card).find(`#betAmount-${match.id}`);
+        const potentialWin = $(card).find(`#potentialWin-${match.id}`);
+        // var odds=0;
+        // $(".outcome").on('click', function(){
+        //     $(".outcome").removeClass('selected');
+        //     $(this).addClass('selected');
+        //     odds = parseFloat($(this).find('.outcome-odds').text());
+            
+        //     let amount = parseFloat(betAmount.val()) || 0;
+        //     let win = (amount * odds).toFixed(2);
+        //     // potentialWinSpecial.text(win);
+        //     $(`#potentialWinSpecial-${match.id}`).text(win);
+        //     console.log("Selected odds: ", odds,"Win: ", win);
+        // });
+
+        // betAmountInput.on('keyup', function(){
+        //     const amount = parseFloat($(this).val()) || 0;
+        //     // const odds = ; // Normally from selected outcome
+        //     const win = (amount * odds).toFixed(2);
+        //     // $(`#potentialWinSpecial-${match.id}`).text(win);
+        //     console.log("Input odds: ",odds,"Win: ", win);
+        // });
+
+        return card[0]; // return native DOM element for append in renderMatches
+    }
+        async function upcomingMatches(){
+            const upcomingMatches=await loadUpcomingMatchdata();
+            // console.log("Upcoming matches ",upcomingMatches.data)
+            upcomingMatches.data.forEach(match => {
+                // console.log("Match ",match)
+                const matchCard = createUpcomingMatchCard(match,match.matchId);
+                upcomingMatchesContainer.append(matchCard);})
+        }
+        // console.log("Live Matches Data:", liveMatches()); 
+
+        function createUpcomingMatchCard(match, id) {
+    const card = $('<div>', { class: 'match-card fade-in' }).html(`
+        <div class="match-header">
+            <div class="match-tournament">${match.superEvent}</div>
+            <div class="match-time">
+                ${match.eventStatus.includes("Live") ? '<span class="live-pulse"></span>' : '<i class="fas fa-clock"></i>'}
+                ${new Date(match.startDate).toLocaleString()}
+            </div>
+        </div>
+        <div class="upcomingMatchDetails">
+            <div class="match-teams-upcoming">
+            <div class="team">
+                <div class="team-info">
+                    <div class="team-name">${match.teamA}</div>
+                </div>
+                
+            </div>
+            <div class="team">
+                <div class="team-info">
+                    <div class="team-name">${match.teamB}</div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <div class="location">
+                <div class="team-location"><span class="status-txt">${match.location}</span></div>
+                </div>    
+        </div>
+        
+        <div class="bet-options">
+            <div class="bet-option">
+                <div class="bet-title">Match Winner</div>
+                <div class="bet-outcomes">
+                    <div class="outcome">
+                        <div class="outcome-name">${match.teamA}</div>
+                        <div class="outcome-odds">1.85</div>
+                    </div>
+                    <div class="outcome">
+                        <div class="outcome-name">${match.teamB}</div>
+                        <div class="outcome-odds">2.10</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bet-amount-input">
+            <div class="input-group">
+                <div class="label-grp">
+                    <label for="betAmount-${id}">Enter Bet Amount ($)</label>
+                <i class="fa-solid fa-user-lock"></i>
+                    </div>
+                
+                <input type="number" id="betAmount-${id}" min="10" value="10" disabled>  
+                  
+            </div>
+            <div class="potential-win">
+                Potential Win: $<span id="potentialWin-${id}">18.50</span>
+            </div>
+            <button class="place-bet-btn">Place Bet</button>
+        </div>
+    `);
+
+    // Click event to open match detail modal
+    $(card).on('click', function(e) {
+        // if (e.target.tagName === 'INPUT' || e.target.tagName === 'BUTTON') return;
+
+        // $('#matchModalTitle').text(`${match.teamA} vs ${match.teamB} - ${match.superEvent}`);
+        // $(matchDetailModal).addClass('active');
+        Swal.fire({
+            icon: 'info',
+            title: 'We Know You Are Eager !!',
+            text: 'Betting on upcoming matches will be available soon. Stay tuned!',
+            confirmButtonColor: '#4361ee'
+        });
+    });
+
+    // Potential win calculation
+    // const betAmount = $(card).find(`#betAmount-${id}`);
+    // const potentialWin = $(card).find(`#potentialWin-${id}`);
+
+    // $(betAmount).on('input', function() {
+    //     const amount = parseFloat($(this).val()) || 0;
+    //     const odds = 1.85; // Normally from selected outcome
+    //     const win = (amount * odds).toFixed(2);
+    //     potentialWin.text(win);
+    // });
+
+    return card[0]; // return native DOM element for append in renderMatches
+}
+
+
+let isLoggedIn = false;
+
+// Event listener for closing profile modal
+$(closeProfileModal).on('click', function() {
+    profileModal.removeClass('active');
+});
+        
+       // Profile form submit
+$('#profileForm').on('submit', function(e) {
+    e.preventDefault();
+    // Simulate profile update
+    Swal.fire({
+        icon: 'success',
+        title: 'Profile Updated!',
+        text: 'Your profile has been successfully updated.',
+        confirmButtonColor: '#4361ee'
+    });
+});
+
+// 2FA management
+$(manage2FABtn).on('click', function(e) {
+    e.preventDefault();
+    $(profileModal).removeClass('active');
+    $(twoFAModal).addClass('active');
+});
+
+// Function to update UI based on login status
+
+
+// Event listener for profile button
+$(profileBtn).on('click', function() {
+    // Close any open modals first
+    $('.modal.active').removeClass('active');
+
+    // Open profile modal
+    $(profileModal).addClass('active');
+    console.log("Username ",localStorage.getItem("username"))
+    // Fetch all user data
+    fetchAllUserData(localStorage.getItem("username"));
+});
+
+// Event listener for logout button
+$(logoutBtn).on('click', function() {
+    Swal.fire({
+        title: 'Logout',
+        text: 'Are you sure you want to logout?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#4361ee',
+        cancelButtonColor: '#ef476f',
+        confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Simulate logout process
+            setTimeout(function() {
+                console.log("User logged out");
+                updateAuthUI(false);
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("refreshToken");
+                localStorage.removeItem("username");
+              localStorage.setItem("isLoggedIn",false);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Logged Out!',
+                    text: 'You have been successfully logged out.',
+                    confirmButtonColor: '#4361ee'
+                });
+            }, 500);
+        }
+    });
+});
+// Update the Google authentication function to show profile after login
+   function simulateGoogleAuth(action) {
+    Swal.fire({
+        title: `Continue with Google`,
+        text: `You will be redirected to Google to ${action} to your account`,
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonColor: '#4361ee',
+        cancelButtonColor: '#ef476f',
+        confirmButtonText: 'Continue',
+        showLoaderOnConfirm: true,
+        preConfirm: () => {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve();
+                }, 1500);
+            });
+        },
+        allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Close the current modal
+            window.location.href = "http://localhost:8080/login/oauth2/code/google";
+            if (action === 'login') {
+                $loginModal.removeClass('active');
+            } else {
+                $signupModal.removeClass('active');
+            }
+
+            // Show 2FA modal
+            setTimeout(() => {
+                $twoFAModal.addClass('active');
+
+                // After 2FA verification, update UI to show user is logged in
+                // This would normally happen after successful verification
+                setTimeout(() => {
+                    updateAuthUI(true, {
+                        name: 'CricketFan23',
+                        avatar: 'https://via.placeholder.com/40x40'
+                    });
+                }, 2000);
+            }, 500);
+        }
+    });
+}
+
+       // Open login/signup modals
+    $(loginBtn).on('click', function() {
+        loginModal.addClass('active');
+    });
+
+    $(signupBtn).on('click', function() {
+        signupModal.addClass('active');
+    });
+
+    // Close modals
+    $(closeLoginModal).on('click', function() {
+        loginModal.removeClass('active');
+    });
+
+    $(closeSignupModal).on('click', function() {
+        signupModal.removeClass('active');
+    });
+
+    $(closeTwoFAModal).on('click', function() {
+        twoFAModal.removeClass('active');
+    });
+
+    $(closeProfileModal).on('click', function() {
+        profileModal.removeClass('active');
+    });
+
+    $(closeMatchModal).on('click', function() {
+        matchDetailModal.removeClass('active');
+    });
+
+    // Switch between login and signup
+    $(switchToSignup).on('click', function(e) {
+        e.preventDefault();
+        loginModal.removeClass('active');
+        signupModal.addClass('active');
+    });
+
+    $(switchToLogin).on('click', function(e) {
+        e.preventDefault();
+        signupModal.removeClass('active');
+        loginModal.addClass('active');
+    });
+
+    // Google login/signup
+    $(googleLoginBtn).on('click', function() {
+        simulateGoogleAuth('login');
+    });
+
+    $(googleSignupBtn).on('click', function() {
+        simulateGoogleAuth('signup');
+    });
+        
+        // 2FA verification
+    // 2FA verification
+    $(verify2FABtn).on('click', function() {
+        const code = $('#verificationCode').val();
+        if (code.length === 6) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Verification Successful!',
+                text: 'You are now logged in.',
+                confirmButtonColor: '#4361ee'
+            }).then(function() {
+                twoFAModal.removeClass('active');
+
+                // Update UI to show user is logged in
+                loginBtn.text('Profile');
+                signupBtn.hide();
+
+                // Remove any previous click handlers and add new one for profile modal
+                loginBtn.off('click').on('click', function() {
+                    profileModal.addClass('active');
+                });
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Code',
+                text: 'Please enter a valid 6-digit code.',
+                confirmButtonColor: '#ef476f'
+            });
+        }
+    });
+
+        // Resend 2FA code
+    $(resendCode).on('click', function(e) {
+        e.preventDefault();
+        Swal.fire({
+            icon: 'success',
+            title: 'Code Sent!',
+            text: 'A new verification code has been sent to your email.',
+            confirmButtonColor: '#4361ee'
+        });
+    });
+
+    // Manage 2FA button
+    $(manage2FABtn).on('click', function(e) {
+        e.preventDefault();
+        profileModal.removeClass('active');
+        twoFAModal.addClass('active');
+    });
+
+    // Close modals when clicking outside
+    $(window).on('click', function(e) {
+        if (e.target === loginModal[0]) {
+            loginModal.removeClass('active');
+        }
+        if (e.target === signupModal[0]) {
+            signupModal.removeClass('active');
+        }
+        if (e.target === twoFAModal[0]) {
+            twoFAModal.removeClass('active');
+        }
+        if (e.target === profileModal[0]) {
+            profileModal.removeClass('active');
+        }
+        if (e.target === matchDetailModal[0]) {
+            matchDetailModal.removeClass('active');
+        }
+    });
+    var winnerOdd=0;
+    $(".outcome-winning-odds").on('click', function(){
+        $(".outcome").removeClass('selected');
+        $(this).addClass('selected');
+         winnerOdd = parseFloat($(this).text());
+        const amount = parseFloat($('#betAmount').val()) || 0;
+        const potentialWin = (amount * winnerOdd).toFixed(2);
+        $('#potentialWin').text(potentialWin);
+        console.log("Selected odds: ", winnerOdd);
+    });
+    // Calculate potential win
+    $('#betAmount').on('input', function() {
+    const amount = parseFloat($(this).val()) || 0;
+    // const odds = 1.85;
+    console.log("Input odds: ", winnerOdd,"Amount: ", amount);
+    const potentialWin = (amount * winnerOdd).toFixed(2);
+    $('#potentialWin').text(potentialWin);
+});
+    $(".outcome-runs-odds").on('click', function(){
+        $(".outcome").removeClass('selected');
+        $(this).addClass('selected');
+         winnerOdd = parseFloat($(this).text());
+        const amount = parseFloat($('#betAmountRuns').val()) || 0;
+        const potentialWin = (amount * winnerOdd).toFixed(2);
+        $('#potentialWinRuns').text(potentialWin);
+        console.log("Selected odds: ", winnerOdd);
+    });
+    $('#betAmountRuns').on('input', function() {
+        const amount = parseFloat($(this).val()) || 0;
+    // const odds = 1.85;
+    console.log("Input odds: ", winnerOdd,"Amount: ", amount);
+    const potentialWin = (amount * winnerOdd).toFixed(2);
+    $('#potentialWinRuns').text(potentialWin);
+    });
+
+        // Tab switching
+        // betTabs.forEach(tab => {
+        //     tab.addEventListener('click', () => {
+        //         // Remove active class from all tabs and content
+        //         document.querySelectorAll('.bet-tab').forEach(t => t.classList.remove('active'));
+        //         document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+        //         // Add active class to clicked tab and corresponding content
+        //         tab.classList.add('active');
+        //         const tabId = tab.getAttribute('data-tab');
+        //         document.getElementById(tabId).classList.add('active');
+        //     });
+        // });
+
+        $('.bet-tab').on('click', function() {
+    const tab = $(this);
+
+    // Remove active class from all tabs and content
+    $('.bet-tab').removeClass('active');
+    $('.tab-content').removeClass('active');
+
+    // Add active class to clicked tab and corresponding content
+    tab.addClass('active');
+    const tabId = tab.data('tab'); // reads data-tab attribute
+    $('#' + tabId).addClass('active');
+});
+        
+        // Render matches
+        function renderMatches(){
+        // Clear containers
+        liveMatchesContainer.empty();
+        upcomingMatchesContainer.empty();
+
+        // Render live matches
+        // liveMatches().forEach(match => {
+        //     const matchCard = createMatchCard(match);
+        //     liveMatchesContainer.append(matchCard);
+        // });
+
+        // Render upcoming matches
+        // upcomingMatches.forEach(match => {
+        //     const matchCard = createMatchCard(match);
+        //     upcomingMatchesContainer.append(matchCard);
+        // });
+    }
+
+        
+      // Simulate Google authentication
+    // function simulateGoogleAuth(action) {
+    //     Swal.fire({
+    //         title: `Continue with Google`,
+    //         text: `You will be redirected to Google to ${action} to your account`,
+    //         icon: 'info',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#4361ee',
+    //         cancelButtonColor: '#ef476f',
+    //         confirmButtonText: 'Continue',
+    //         showLoaderOnConfirm: true,
+    //         preConfirm: () => {
+    //             return new Promise((resolve) => {
+    //                 setTimeout(() => {
+    //                     resolve();
+    //                 }, 1500);
+    //             });
+    //         },
+    //         allowOutsideClick: () => !Swal.isLoading()
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             // Close the current modal
+    //             if (action === 'login') {
+    //                 loginModal.removeClass('active');
+    //             } else {
+    //                 signupModal.removeClass('active');
+    //             }
+
+    //             // Show 2FA modal
+    //             setTimeout(() => {
+    //                 twoFAModal.addClass('active');
+    //             }, 500);
+    //         }
+    //     });
+    // }
+
+    // // Login form submission
+    // $('#loginForm').on('submit', function(e) {
+    //     e.preventDefault();
+    //     loginModal.removeClass('active');
+    //     setTimeout(() => {
+    //         twoFAModal.addClass('active');
+    //     }, 500);
+    // });
+
+    // // Signup form submission
+    // $('#signupForm').on('submit', function(e) {
+    //     e.preventDefault();
+    //     signupModal.removeClass('active');
+    //     Swal.fire({
+    //         icon: 'success',
+    //         title: 'Account Created!',
+    //         text: 'Your account has been successfully created.',
+    //         confirmButtonColor: '#4361ee'
+    //     });
+    // });
+
+    // // Profile form submission
+    // $('#profileForm').on('submit', function(e) {
+    //     e.preventDefault();
+    //     Swal.fire({
+    //         icon: 'success',
+    //         title: 'Profile Updated!',
+    //         text: 'Your profile has been successfully updated.',
+    //         confirmButtonColor: '#4361ee'
+    //     });
+    // });
+        
+        // Outcome selection
+        $(document).on('click', '.outcome', function() {
+        const outcome = $(this);
+        const outcomesContainer = outcome.parent();
+
+        // Remove selected class from all outcomes in this container
+        $(outcomesContainer).find('.outcome').removeClass('selected');
+
+        // Add selected class to clicked outcome
+        $(outcome).addClass('selected');
+    });
+        // Initialize the page
+        renderMatches();
+        });
+        
+    </script>
+</body>
+</html>

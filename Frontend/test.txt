@@ -1,0 +1,137 @@
+That’s a very good question 👌 and a common confusion when mixing external APIs with your own database design.
+
+Here’s the key point:
+👉 Even if you pull match details from an API, you still need a Match table in your ER diagram, because:
+	1.	Your system must have a logical data model (ERD) showing how entities relate (Users → Bets → Matches → Outcomes).
+	2.	API data is just a source; once you fetch it, you’ll likely store some/all of it in your DB for betting operations (odds, bets, history).
+	3.	Without a Match entity, your Bet table wouldn’t know what match the bet belongs to.
+
+⸻
+
+✅ Example Simplified ER Model for Betting
+	•	User (bettor)
+	•	Bet (placed by a user, linked to a match & specific market)
+	•	Match (fetched from API, stored in your DB at least partially)
+	•	Market / Bet Type (e.g., “Winner”, “Runs in Over 5”, “Next Wicket”)
+	•	Odds (for each market option)
+
+Relationships:
+	•	User (1) --- (M) Bet
+	•	Match (1) --- (M) Market
+	•	Market (1) --- (M) Bet
+	•	Market (1) --- (M) Odds
+
+⸻
+
+🏏 Example with Cricket
+	•	Match Table
+	•	match_id (PK)
+	•	team1, team2
+	•	start_time, status
+	•	api_ref_id (to map with external API)
+@Builder
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Matches {
+    @Id
+    private String matchId;
+    private String matchSeries;
+    private String team1;
+    private String team2;
+    private String location;
+    @Enumerated(EnumType.STRING)
+    private MatchFormat matchFormat;
+    private boolean isLive;
+}
+	•	Market Table
+	•	market_id (PK)
+	•	match_id (FK → Match)
+	•	type (e.g., “Runs in Over”, “Match Winner”)
+	
+	@Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+public class Market {
+    @Id
+    private String id;
+    private String type;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="match_id")
+    private Matches match;
+}
+
+    •	Bet Table
+	•	bet_id (PK)
+	•	user_id (FK → User)
+	•	market_id (FK → Market)
+	•	odds_at_time
+	•	stake, potential_return, status
+
+
+	@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+public class Bet {
+    @Id
+    private String betId;
+    private Date date;
+    private Time time;
+    private String stake;
+    private double amount;
+    private double potential_return;
+    private String status;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="market_id")
+    private Market market;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private User user;
+}
+
+⸻
+
+⚡ How it Works in Practice
+	1.	API → You pull match info (teams, schedule, scores).
+	2.	Store it in your Match table (so you can reference it later).
+	3.	Your system adds markets for that match (e.g., Winner, Runs in Over X).
+	4.	Users place bets on those markets.
+
+So yes ✅ having a Match table is absolutely correct for your ER diagram — even if the raw data comes from an API.
+
+⸻
+
+Do you want me to draft a sample ER diagram structure (with tables + relationships) specifically for your betting site idea?
+
+
+
+
+
+
+4916217501611292
+
+Z1UBQNaaNm8$
+
+
+
+
+
+----------------------------
+T20 & ODI
+----------------------------
+Match Winner
+Total Runs Over/Under
+Fall of Next Wicket 
+Team to Hit Most Sixes 
+50 Runs in First 10 Overs
+----------------------------
+TEST
+----------------------------
+Match Winner
+First Innings Lead
+Total Match Wickets  
+Innigs runs
