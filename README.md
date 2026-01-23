@@ -12,10 +12,7 @@ A full-stack **Betting Site** project built with:
 ---
 
 ## 📂 Project Structure
-- ** Backend/     # Spring Boot backend (APIs, authentication, DB
-- ** Frontend/    # UI with HTML, CSS, jQuery, JavaScript
-- ** README.md    # Project documentation
----
+
 
 ## 🚀 Features
 
